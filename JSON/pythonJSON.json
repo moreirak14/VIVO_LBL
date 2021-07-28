@@ -1,6 +1,14 @@
 {
       "INPUTs": [
             {
+                  "INPUT": "VIVO0212248",
+                  "REGIONAL": "SP",
+                  "CEP": "07034010",
+                  "BAIRRO": "VARZEA DO PALACIO",
+                  "MUNICIPIO": "GUARULHOS",
+                  "ENDERECO": "RODOVIA PRESIDENTE DUTRA S/N"
+            },
+            {
                   "INPUT": "VIVO0212249",
                   "REGIONAL": "SP",
                   "CEP": "07034010",

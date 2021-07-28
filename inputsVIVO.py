@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 
-BASE_DIR = Path("LBL/.")
+BASE_DIR = Path("LBL/")
 JSON_FILE_PATH = "JSON/pythonJSON.json"
 LBL_FILE_NAME = "VIVO0212248.lbl"
 LBL_FILE_PATH = BASE_DIR / LBL_FILE_NAME
@@ -36,7 +36,7 @@ def main():
                 # Insere o dado do json referente a coluna do arquivo
                 for key, value in input_data.items():
                     if column == key:
-                        lbl_file_lines[i] = f"{column}{separator}  {value}\n"
+                        lbl_file_lines[i] = f"{column}{separator}{value}\n"
 
             except ValueError:
                 continue

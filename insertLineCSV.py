@@ -8,9 +8,11 @@ json_path = 'JSON/pythonJSON.json'
 
 
 def lineCSV():
-    input_names = [ 'INPUT'';''REGIONAL'';''CEP'';''BAIRRO'';''MUNICIPIO'';''ENDERECO' ]
 
-    with open(csv_path, 'r+') as file_csv:
+    input_names_str = "INPUT;REGIONAL;CEP;BAIRRO;MUNICIPIO;ENDERECO"
+    input_names = [input_names_str]
+
+    with open(csv_path, 'r+', newline='') as file_csv:
         writer = csv.DictWriter(file_csv, fieldnames=input_names)
         writer.writeheader()
 
