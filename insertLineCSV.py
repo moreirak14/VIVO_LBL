@@ -1,24 +1,36 @@
 import csv
+import tkinter.messagebox
 from pathlib import Path
-from turtle import pd
 
-BASE_DIR = Path("CSV/")
-csv_path = BASE_DIR / "lbl_scgn000026_20210716164414.csv"
 
-def lineCSV():
+def insertlineCSV():
 
+    csv_path = "CSV/"
+    extension = "*.csv"
     input_names_str = ['INPUT;''REGIONAL;''CEP;''BAIRRO;''MUNICIPIO;''ENDERECO']
 
-    with open(csv_path, 'w') as file_csv:
-        writer = csv.DictWriter(file_csv, fieldnames=input_names_str)
-        writer.writeheader()
+    for filename in Path(csv_path).rglob(extension):
+        inputsfile = [filename]
 
-def lineCSV2():
+    # Verifica se existe algum arquivo .csv para ser ajustado
+    if (inputsfile != 0):
+        with open(inputsfile[0], 'r') as read_file_csv:
+            readFile = csv.reader(read_file_csv)
+            lines = list(readFile)
+            lines.insert(0, input_names_str)
 
-    input_names_str = ['INPUT;''REGIONAL;''CEP;''BAIRRO;''MUNICIPIO;''ENDERECO']
+        with open(inputsfile[0], 'w', newline='') as write_file_csv:
+            writeFile = csv.writer(write_file_csv)
+            writeFile.writerows(lines)
 
-    df = pd.read_csv(csv_path, header=None)
-    df.to_csv("example.csv", header=["Letter", "Number", "Symbol"], index=False)
+        write_file_csv.close()
+        read_file_csv.close()
+
+    elif (inputsfile == 0):
+        tkinter.messagebox.showwarning(
+            title="AVISO",
+            message="Não têm nenhum arquivo CSV para ser ajustado")
+
 
 if __name__ == "__main__":
-    lineCSV2()
+    insertlineCSV()

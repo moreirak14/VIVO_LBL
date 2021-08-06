@@ -3,14 +3,17 @@ import json
 from pathlib import Path
 
 
-BASE_DIR = Path("CSV/")
-csv_path = BASE_DIR / "lbl_scgn000026_20210716164414.csv"
-json_path = 'JSON/pythonJSON.json'
-
-
 def toJson():
-    if csv_path.exists():
-        with open(csv_path, 'r') as arquivo_csv:
+
+    csv_path = "CSV/"
+    extension = "*.csv"
+    json_path = 'JSON/VIVO_LBL.json'
+
+    for filename in Path(csv_path).rglob(extension):
+        inputsfile = [filename]
+
+    if (inputsfile != 0):
+        with open(inputsfile[0], 'r') as arquivo_csv:
             reader = csv.reader(arquivo_csv, delimiter=';')
             next(reader)
             data = {'INPUTs': []}
