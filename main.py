@@ -99,7 +99,7 @@ def readerJSON():
         if input_["INPUT"] == inputsfile:
             input_data = input_
 
-    with open(, "r") as lbl_file:
+    with open(#, "r") as lbl_file:
         lbl_file_lines = lbl_file.readlines()
 
 
