@@ -5,19 +5,13 @@ import csv
 from pathlib import Path
 
 
-JSON_FILE_PATH = "JSON/pythonJSON.json"
-path_lbl = "LBL/"
-filename_filter = "VIVO*.LBL"
-path_filename_filter = "LBL/VIVO0212248.LBL"
-
-
 def insertlineCSV():
 
-    csv_path = "CSV/"
-    extension = "*.csv"
+    CSV_PATH = 'CSV/'
+    EXTENSION = '*.csv'
     input_names_str = ['INPUT;''REGIONAL;''CEP;''BAIRRO;''MUNICIPIO;''ENDERECO']
 
-    for filename in Path(csv_path).rglob(extension):
+    for filename in Path(CSV_PATH).rglob(EXTENSION):
         inputsfile = [filename]
 
     # Verifica se existe algum arquivo .csv para ser ajustado
@@ -40,11 +34,11 @@ def insertlineCSV():
 
 def toJson():
 
-    csv_path = "CSV/"
-    extension = "*.csv"
-    json_path = 'JSON/VIVO_LBL.json'
+    CSV_PATH = 'CSV/'
+    EXTENSION = '*.csv'
+    JSON_PATH = 'JSON/VIVO_LBL.json'
 
-    for filename in Path(csv_path).rglob(extension):
+    for filename in Path(CSV_PATH).rglob(EXTENSION):
         inputsfile = [filename]
 
     if (inputsfile != 0):
@@ -62,13 +56,16 @@ def toJson():
                     'ENDERECO': line[5],
                 })
 
-        with open(json_path, 'w') as arquivo_json:
+        with open(JSON_PATH, 'w') as arquivo_json:
             json.dump(data, arquivo_json, indent=6)
             return list_inputs_lbl()
 
 
 def list_inputs_lbl():
-    list = os.listdir(path_lbl)
+
+    LBL_PATH = 'LBL/'
+
+    list = os.listdir(LBL_PATH)
     number_files = len(list)
 
     # Verifica se existe algum arquivo .lbl para ser ajustado
@@ -82,12 +79,17 @@ def list_inputs_lbl():
 
 
 def readerJSON():
+
+    JSON_PATH = 'JSON/VIVO_LBL.json'
+    filename_filter = 'VIVO*.LBL'
+    LBL_PATH = 'LBL/'
+
     # Lista todos inputs do diretorio LBL/
-    for filename in Path(path_lbl).rglob(filename_filter):
+    for filename in Path(LBL_PATH).rglob(filename_filter):
         inputsfile = [filename.name]
         print(inputsfile)
 
-    with open(JSON_FILE_PATH, "r") as json_file:
+    with open(JSON_PATH, "r") as json_file:
         json_data = json.load(json_file)
         print(json_data)
 
@@ -97,7 +99,7 @@ def readerJSON():
         if input_["INPUT"] == inputsfile:
             input_data = input_
 
-    with open(path_filename_filter, "r") as lbl_file:
+    with open(, "r") as lbl_file:
         lbl_file_lines = lbl_file.readlines()
 
 
